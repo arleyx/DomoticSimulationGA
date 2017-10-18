@@ -1,0 +1,4 @@
+NAME=Refrigerator
+STATES=onlineState,openState,closeState,offlineState
+STATE_INITIAL=offlineState
+STATE.onlineState=0w

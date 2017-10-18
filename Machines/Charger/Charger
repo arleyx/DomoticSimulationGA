@@ -1,0 +1,3 @@
+NAME=Charger
+STATES=onlineState,offlineState
+STATE_INITIAL=offlineState

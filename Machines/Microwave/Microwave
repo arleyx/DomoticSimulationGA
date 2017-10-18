@@ -1,0 +1,4 @@
+NAME=Microwave
+STATES=onlineState,openState,processingState,closeState,offlineState
+STATE_INITIAL=offlineState
+STATE.onlineState=0w

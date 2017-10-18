@@ -1,0 +1,3 @@
+NAME=Tv
+STATES=onlineState,onState,offState,offlineState
+STATE_INITIAL=offlineState

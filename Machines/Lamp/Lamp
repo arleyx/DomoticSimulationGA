@@ -1,0 +1,5 @@
+NAME=Lamp
+STATES=onState,offState
+STATE_INITIAL=offState
+STATE.onState=60w
+STATE.offState=0w

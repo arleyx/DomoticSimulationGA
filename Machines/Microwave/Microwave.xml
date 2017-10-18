@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scxml SYSTEM "template.dtd">
+<!-- this template models the state machine of a DogOnt SimpleLamp device -->
+<!-- @device=Microwave -->
+<!-- This is a simple SCXML document describing a Lamp as a State Machine in
+	SCXML -->
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0">
+	<state id="&id;microwaveMachine">
+		<state id="&id;onlineState">
+			<transition event="&id;open" target="&id;openState"/>
+			<transition event="&id;close" target="&id;closeState"/>
+		</state>
+		<state id="&id;openState">
+			<transition event="&id;close" target="&id;closeState"/>
+		</state>
+		<state id="&id;processingState">
+			<transition event="&id;open" target="&id;openState"/>
+		</state>
+		<state id="&id;closeState">
+			<transition event="&id;open" target="&id;openState"/>
+			<transition event="&id;offline" target="&id;offlineState"/>
+		</state>
+		<state id="&id;offlineState">
+			<transition event="&id;online" target="&id;onlineState"/>
+		</state>
+		<initial>
+			<transition target="&id;offlineState"/>
+		</initial>
+ 	</state>
+</scxml>

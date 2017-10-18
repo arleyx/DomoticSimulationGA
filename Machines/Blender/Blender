@@ -1,0 +1,3 @@
+NAME=Blender
+STATES=onlineState,onState,offState,offlineState
+STATE_INITIAL=offlineState
