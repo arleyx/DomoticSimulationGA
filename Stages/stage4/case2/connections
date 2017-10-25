@@ -1,0 +1,9 @@
+Afuera=Piso1-mesas
+Piso1-cocina=Piso1-mesas
+Piso1-mesas=Afuera,Piso1-cocina,Piso1-administracion,Piso1-bano1,Piso1-bano2
+Piso1-administracion=Piso1-mesas,Piso2-oficina
+Piso1-bano1=Piso1-mesas
+Piso1-bano2=Piso1-mesas
+Piso2-bano3=Piso2-oficina
+Piso2-oficina=Piso1-administracion,Piso2-bano3,Piso2-bodega
+Piso2-bodega=Piso2-oficina

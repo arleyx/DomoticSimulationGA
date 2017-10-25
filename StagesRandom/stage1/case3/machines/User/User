@@ -1,0 +1,3 @@
+NAME=User
+STATES=Afuera,Piso1-Cocina,Piso1-Comedor,Piso1-Sala,Piso2-Bano,Piso2-Estudio,Piso2-Habitacion1,Piso3-Habitacion2,Piso3-Patio
+STATE_INITIAL=Afuera

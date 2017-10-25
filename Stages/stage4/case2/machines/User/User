@@ -1,0 +1,3 @@
+NAME=User
+STATES=Afuera,Piso1-administracion,Piso1-bano1,Piso1-bano2,Piso1-cocina,Piso1-mesas,Piso2-bano3,Piso2-bodega,Piso2-oficina
+STATE_INITIAL=Afuera

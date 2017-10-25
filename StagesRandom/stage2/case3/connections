@@ -1,0 +1,8 @@
+Afuera=Piso1-Sala
+Piso1-Cocina=Piso1-Sala,Piso1-Comedor
+Piso1-Sala=Afuera,Piso1-Cocina,Piso1-Comedor,Piso1-Habitacion1
+Piso1-Comedor=Piso1-Sala
+Piso1-Bano=Piso1-Habitacion1,
+Piso1-Estudio=Piso1-Habitacion1
+Piso1-Habitacion1=Piso1-Sala,Piso1-Bano,Piso1-Estudio,Piso1-Habitacion2
+Piso1-Habitacion2=Piso1-Habitacion1

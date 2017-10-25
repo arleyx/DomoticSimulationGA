@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scxml SYSTEM "template.dtd">
+<!-- @device=User -->
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0">
+	<state id="&id;userMachine">
+		<datamodel>
+			<data name="&id;state" expr="''"/>
+		</datamodel>
+		<initial>
+			<transition target="&id;Afuera"/>
+		</initial>
+			<state id="&id;Afuera">
+	    	<onentry>
+	    		<send sendid="&id;decideAfuera" targettype="'scxml'" event="'&id;decideAfuera'" delay="random.time()"/>
+	    		<assign name="&id;state" expr="random.state(2)"/>
+			</onentry>
+			<transition event="&id;decideAfuera" cond="&id;state eq Afuera" target="&id;Afuera"/>
+			<transition event="&id;decideAfuera" cond="&id;state eq Piso1-mesas" target="&id;Piso1-mesas"/>
+	    	<onexit>
+				<cancel sendid="&id;decideAfuera"/>
+			</onexit>
+	    </state>
+			<state id="&id;Piso1-administracion">
+	    	<onentry>
+	    		<send sendid="&id;decidePiso1-administracion" targettype="'scxml'" event="'&id;decidePiso1-administracion'" delay="random.time()"/>
+	    		<assign name="&id;state" expr="random.state(5)"/>
+			</onentry>
+			<transition event="&id;decidePiso1-administracion" cond="&id;state eq Piso1-administracion" target="&id;Piso1-administracion"/>
+			<transition event="&id;decidePiso1-administracion" cond="&id;state eq Piso1-mesas" target="&id;Piso1-mesas"/>
+			<transition event="&id;decidePiso1-administracion" cond="&id;state eq Piso2-oficina" target="&id;Piso2-oficina"/>
+			<transition event="&id;decidePiso1-administracion" cond="&id;state eq Piso1-administracion" target="&id;Piso1-administracion">
+<send targettype="'scxml'" event="'&id;pc1_' + states.getEvent('pc1')"/>
+			</transition>
+			<transition event="&id;decidePiso1-administracion" cond="&id;state eq Piso1-administracion" target="&id;Piso1-administracion">
+<send targettype="'scxml'" event="'&id;cargador1_' + states.getEvent('cargador1')"/>
+			</transition>
+	    	<onexit>
+				<cancel sendid="&id;decidePiso1-administracion"/>
+			</onexit>
+	    </state>
+			<state id="&id;Piso1-bano1">
+	    	<onentry>
+	    		<send sendid="&id;decidePiso1-bano1" targettype="'scxml'" event="'&id;decidePiso1-bano1'" delay="random.time()"/>
+	    		<assign name="&id;state" expr="random.state(3)"/>
+			</onentry>
+			<transition event="&id;decidePiso1-bano1" cond="&id;state eq Piso1-bano1" target="&id;Piso1-bano1"/>
+			<transition event="&id;decidePiso1-bano1" cond="&id;state eq Piso1-mesas" target="&id;Piso1-mesas"/>
+			<transition event="&id;decidePiso1-bano1" cond="&id;state eq Piso1-bano1" target="&id;Piso1-bano1">
+<send targettype="'scxml'" event="'&id;bombillo4_' + states.getEvent('bombillo4')"/>
+			</transition>
+	    	<onexit>
+				<cancel sendid="&id;decidePiso1-bano1"/>
+			</onexit>
+	    </state>
+			<state id="&id;Piso1-bano2">
+	    	<onentry>
+	    		<send sendid="&id;decidePiso1-bano2" targettype="'scxml'" event="'&id;decidePiso1-bano2'" delay="random.time()"/>
+	    		<assign name="&id;state" expr="random.state(4)"/>
+			</onentry>
+			<transition event="&id;decidePiso1-bano2" cond="&id;state eq Piso1-bano2" target="&id;Piso1-bano2"/>
+			<transition event="&id;decidePiso1-bano2" cond="&id;state eq Piso1-mesas" target="&id;Piso1-mesas"/>
+			<transition event="&id;decidePiso1-bano2" cond="&id;state eq Piso1-bano2" target="&id;Piso1-bano2">
+<send targettype="'scxml'" event="'&id;bombillo5_' + states.getEvent('bombillo5')"/>
+			</transition>
+			<transition event="&id;decidePiso1-bano2" cond="&id;state eq Piso1-bano2" target="&id;Piso1-bano2">
+<send targettype="'scxml'" event="'&id;bombillo6_' + states.getEvent('bombillo6')"/>
+			</transition>
+	    	<onexit>
+				<cancel sendid="&id;decidePiso1-bano2"/>
+			</onexit>
+	    </state>
+			<state id="&id;Piso1-cocina">
+	    	<onentry>
+	    		<send sendid="&id;decidePiso1-cocina" targettype="'scxml'" event="'&id;decidePiso1-cocina'" delay="random.time()"/>
+	    		<assign name="&id;state" expr="random.state(8)"/>
+			</onentry>
+			<transition event="&id;decidePiso1-cocina" cond="&id;state eq Piso1-cocina" target="&id;Piso1-cocina"/>
+			<transition event="&id;decidePiso1-cocina" cond="&id;state eq Piso1-mesas" target="&id;Piso1-mesas"/>
+			<transition event="&id;decidePiso1-cocina" cond="&id;state eq Piso1-cocina" target="&id;Piso1-cocina">
+<send targettype="'scxml'" event="'&id;bombillo1_' + states.getEvent('bombillo1')"/>
+			</transition>
+			<transition event="&id;decidePiso1-cocina" cond="&id;state eq Piso1-cocina" target="&id;Piso1-cocina">
+<send targettype="'scxml'" event="'&id;nevera1_' + states.getEvent('nevera1')"/>
+			</transition>
+			<transition event="&id;decidePiso1-cocina" cond="&id;state eq Piso1-cocina" target="&id;Piso1-cocina">
+<send targettype="'scxml'" event="'&id;nevera2_' + states.getEvent('nevera2')"/>
+			</transition>
+			<transition event="&id;decidePiso1-cocina" cond="&id;state eq Piso1-cocina" target="&id;Piso1-cocina">
+<send targettype="'scxml'" event="'&id;nevera3_' + states.getEvent('nevera3')"/>
+			</transition>
+			<transition event="&id;decidePiso1-cocina" cond="&id;state eq Piso1-cocina" target="&id;Piso1-cocina">
+<send targettype="'scxml'" event="'&id;licuadora1_' + states.getEvent('licuadora1')"/>
+			</transition>
+			<transition event="&id;decidePiso1-cocina" cond="&id;state eq Piso1-cocina" target="&id;Piso1-cocina">
+<send targettype="'scxml'" event="'&id;microondas1_' + states.getEvent('microondas1')"/>
+			</transition>
+	    	<onexit>
+				<cancel sendid="&id;decidePiso1-cocina"/>
+			</onexit>
+	    </state>
+			<state id="&id;Piso1-mesas">
+	    	<onentry>
+	    		<send sendid="&id;decidePiso1-mesas" targettype="'scxml'" event="'&id;decidePiso1-mesas'" delay="random.time()"/>
+	    		<assign name="&id;state" expr="random.state(9)"/>
+			</onentry>
+			<transition event="&id;decidePiso1-mesas" cond="&id;state eq Piso1-mesas" target="&id;Piso1-mesas"/>
+			<transition event="&id;decidePiso1-mesas" cond="&id;state eq Afuera" target="&id;Afuera"/>
+			<transition event="&id;decidePiso1-mesas" cond="&id;state eq Piso1-cocina" target="&id;Piso1-cocina"/>
+			<transition event="&id;decidePiso1-mesas" cond="&id;state eq Piso1-administracion" target="&id;Piso1-administracion"/>
+			<transition event="&id;decidePiso1-mesas" cond="&id;state eq Piso1-bano1" target="&id;Piso1-bano1"/>
+			<transition event="&id;decidePiso1-mesas" cond="&id;state eq Piso1-bano2" target="&id;Piso1-bano2"/>
+			<transition event="&id;decidePiso1-mesas" cond="&id;state eq Piso1-mesas" target="&id;Piso1-mesas">
+<send targettype="'scxml'" event="'&id;bombillo2_' + states.getEvent('bombillo2')"/>
+			</transition>
+			<transition event="&id;decidePiso1-mesas" cond="&id;state eq Piso1-mesas" target="&id;Piso1-mesas">
+<send targettype="'scxml'" event="'&id;bombillo3_' + states.getEvent('bombillo3')"/>
+			</transition>
+			<transition event="&id;decidePiso1-mesas" cond="&id;state eq Piso1-mesas" target="&id;Piso1-mesas">
+<send targettype="'scxml'" event="'&id;equipo1_' + states.getEvent('equipo1')"/>
+			</transition>
+	    	<onexit>
+				<cancel sendid="&id;decidePiso1-mesas"/>
+			</onexit>
+	    </state>
+			<state id="&id;Piso2-bano3">
+	    	<onentry>
+	    		<send sendid="&id;decidePiso2-bano3" targettype="'scxml'" event="'&id;decidePiso2-bano3'" delay="random.time()"/>
+	    		<assign name="&id;state" expr="random.state(4)"/>
+			</onentry>
+			<transition event="&id;decidePiso2-bano3" cond="&id;state eq Piso2-bano3" target="&id;Piso2-bano3"/>
+			<transition event="&id;decidePiso2-bano3" cond="&id;state eq Piso2-oficina" target="&id;Piso2-oficina"/>
+			<transition event="&id;decidePiso2-bano3" cond="&id;state eq Piso2-bano3" target="&id;Piso2-bano3">
+<send targettype="'scxml'" event="'&id;bombillo7_' + states.getEvent('bombillo7')"/>
+			</transition>
+			<transition event="&id;decidePiso2-bano3" cond="&id;state eq Piso2-bano3" target="&id;Piso2-bano3">
+<send targettype="'scxml'" event="'&id;bombillo8_' + states.getEvent('bombillo8')"/>
+			</transition>
+	    	<onexit>
+				<cancel sendid="&id;decidePiso2-bano3"/>
+			</onexit>
+	    </state>
+			<state id="&id;Piso2-bodega">
+	    	<onentry>
+	    		<send sendid="&id;decidePiso2-bodega" targettype="'scxml'" event="'&id;decidePiso2-bodega'" delay="random.time()"/>
+	    		<assign name="&id;state" expr="random.state(5)"/>
+			</onentry>
+			<transition event="&id;decidePiso2-bodega" cond="&id;state eq Piso2-bodega" target="&id;Piso2-bodega"/>
+			<transition event="&id;decidePiso2-bodega" cond="&id;state eq Piso2-oficina" target="&id;Piso2-oficina"/>
+			<transition event="&id;decidePiso2-bodega" cond="&id;state eq Piso2-bodega" target="&id;Piso2-bodega">
+<send targettype="'scxml'" event="'&id;bombillo10_' + states.getEvent('bombillo10')"/>
+			</transition>
+			<transition event="&id;decidePiso2-bodega" cond="&id;state eq Piso2-bodega" target="&id;Piso2-bodega">
+<send targettype="'scxml'" event="'&id;bombillo11_' + states.getEvent('bombillo11')"/>
+			</transition>
+			<transition event="&id;decidePiso2-bodega" cond="&id;state eq Piso2-bodega" target="&id;Piso2-bodega">
+<send targettype="'scxml'" event="'&id;bombillo12_' + states.getEvent('bombillo12')"/>
+			</transition>
+	    	<onexit>
+				<cancel sendid="&id;decidePiso2-bodega"/>
+			</onexit>
+	    </state>
+			<state id="&id;Piso2-oficina">
+	    	<onentry>
+	    		<send sendid="&id;decidePiso2-oficina" targettype="'scxml'" event="'&id;decidePiso2-oficina'" delay="random.time()"/>
+	    		<assign name="&id;state" expr="random.state(6)"/>
+			</onentry>
+			<transition event="&id;decidePiso2-oficina" cond="&id;state eq Piso2-oficina" target="&id;Piso2-oficina"/>
+			<transition event="&id;decidePiso2-oficina" cond="&id;state eq Piso1-administracion" target="&id;Piso1-administracion"/>
+			<transition event="&id;decidePiso2-oficina" cond="&id;state eq Piso2-bano3" target="&id;Piso2-bano3"/>
+			<transition event="&id;decidePiso2-oficina" cond="&id;state eq Piso2-bodega" target="&id;Piso2-bodega"/>
+			<transition event="&id;decidePiso2-oficina" cond="&id;state eq Piso2-oficina" target="&id;Piso2-oficina">
+<send targettype="'scxml'" event="'&id;bombillo9_' + states.getEvent('bombillo9')"/>
+			</transition>
+			<transition event="&id;decidePiso2-oficina" cond="&id;state eq Piso2-oficina" target="&id;Piso2-oficina">
+<send targettype="'scxml'" event="'&id;pc2_' + states.getEvent('pc2')"/>
+			</transition>
+	    	<onexit>
+				<cancel sendid="&id;decidePiso2-oficina"/>
+			</onexit>
+	    </state>
+	</state></scxml>

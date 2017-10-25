@@ -1,0 +1,9 @@
+Afuera=User:usuario1:[bombillo1_on][bombillo1_off][bombillo2_on][bombillo2_off][bombillo3_on][bombillo3_off][bombillo4_on][bombillo4_off][bombillo5_on][bombillo5_off][bombillo6_on][bombillo6_off][bombillo7_on][bombillo7_off][bombillo8_on][bombillo8_off][bombillo9_on][bombillo9_off][bombillo10_on][bombillo10_off][bombillo11_on][bombillo11_off][pc1_on][pc1_off][pc1_offline][pc1_online][pc2_on][pc2_off][pc2_offline][pc2_online][tv1_on][tv1_off][tv1_offline][tv1_online][nevera1_online][nevera1_open][nevera1_close][nevera1_offline][nevera2_online][nevera2_open][nevera2_close][nevera2_offline][microondas1_online][microondas1_open][microondas1_close][microondas1_offline]
+Piso1-cocina=Lamp:bombillo1,Refrigerator:nevera1,Refrigerator:nevera2,Microwave:microondas1
+Piso1-mesas=Lamp:bombillo2,Lamp:bombillo3,Lamp:bombillo4,Lamp:bombillo5,Tv:tv1
+Piso1-administracion=Pc:pc1
+Piso1-bano1=Lamp:bombillo6
+Piso1-bano2=Lamp:bombillo7
+Piso2-bano3=Lamp:bombillo8
+Piso2-oficina=Lamp:bombillo9,Pc:pc2
+Piso2-bodega=Lamp:bombillo10,Lamp:bombillo11
