@@ -1,0 +1,1 @@
+python '../../GeneticAlgorithm' 'GA.csv' '{"components":{"bombillo1":{"costs":{"onState":60,"offState":0},"place":"Piso1-Cocina","connections":{"onState":["onState","offState"],"offState":["offState","onState"]}}},"actuators":["usuario1"]}'
