@@ -3,7 +3,7 @@
 
 import sys, random, json, operator
 from Reader import Reader
-from Genetic import Genetic
+from Population import Population
 from Individual import Individual
 
 def main():
@@ -16,12 +16,19 @@ def main():
 	components = data['components']
 
 	# reader.print_file()
+
+	individuals_number = 500
+	generations_number = 200
 	
 	individuals = []
 	for c in components:
+		
+		print('\n')
+		print(c)
+
 		individual = Individual(reader.get_genes_device(components[c]['place'], c, actuators), components[c]['costs'])
-		genetic = Genetic(100, individual, components[c]['connections'])
-		individuals.append({'order':index_component(c, reader.content[0]), 'name': c, 'place': components[c]['place'], 'optimized':genetic.optimized, 'genes':genetic.best.genes[0], 'prev':individual.fitness, 'last':genetic.best.fitness})
+		population = Population(individuals_number, generations_number, individual, components[c]['connections'])
+		individuals.append({'order':index_component(c, reader.content[0]), 'name': c, 'place': components[c]['place'], 'optimized':population.optimized, 'genes':population.best.genes[0], 'prev':individual.fitness, 'last':population.best.fitness})
 
 		# print('name:' + c + ', place:' + components[c]['place'])
 		# print(individual.genes)
