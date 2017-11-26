@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scxml SYSTEM "template.dtd">
+<!-- @device=User -->
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0">
+	<state id="&id;userMachine">
+		<datamodel>
+			<data name="&id;state" expr="''"/>
+		</datamodel>
+		
+		<initial>
+			<transition target="&id;outState"/>
+		</initial>
+	
+		<!-- USUARIO AFUERA -->
+	
+		<state id="&id;outState">
+	    	<onentry>
+	    		<send sendid="&id;decideOut" targettype="'scxml'" event="'&id;decideOut'" delay="1000"/>
+	    		<assign name="&id;state" expr="states.get('user1')"/>
+			</onentry>
+			<transition event="&id;decideOut" cond="&id;state eq 'outState'" target="&id;outState"/>
+	    	<transition event="&id;decideOut" cond="&id;state eq 'floorOneState'" target="&id;floorOneState"/>
+	    	
+	    </state>
+		
+		<!-- PISO #1 -->
+		
+		<state id="&id;floorOneState">
+	    	<onentry>
+	    		<send sendid="&id;decideFloorOne" targettype="'scxml'" event="'&id;decideFloorOne'" delay="1000"/>
+	    		<assign name="&id;state" expr="states.get('user1')"/>
+			</onentry>
+			<transition event="&id;decideFloorOne" cond="&id;state eq 'outState'" target="&id;outState"/>
+			<transition event="&id;decideFloorOne" cond="&id;state eq 'floorOneState'" target="&id;floorOneState"/>
+	    	<transition event="&id;decideFloorOne" cond="&id;state eq 'floorOneState'" target="&id;floorOneState">
+	    		<send targettype="'scxml'" event="'&id;lamp1_' + states.getEvent('lamp1')"/>
+	    	</transition>
+	    	<transition event="&id;decideFloorOne" cond="&id;state eq 'floorOneState'" target="&id;floorOneState">
+	    		<send targettype="'scxml'" event="'&id;refrigerator1_' + states.getEvent('refrigerator1')"/>
+	    	</transition>
+	    	<transition event="&id;decideFloorOne" cond="&id;state eq 'floorOneState'" target="&id;floorOneState">
+	    		<send targettype="'scxml'" event="'&id;tv1_' + states.getEvent('tv1')"/>
+	    	</transition>
+	    	
+	    </state>
+	</state>
+</scxml>

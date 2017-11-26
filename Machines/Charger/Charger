@@ -1,3 +1,7 @@
 NAME=Charger
 STATES=onlineState,offlineState
 STATE_INITIAL=offlineState
+STATE_VALUE.onlineState=15w
+STATE_VALUE.offlineState=0w
+STATE_CONNECTION.onlineState=offlineState
+STATE_CONNECTION.offlineState=onlineState

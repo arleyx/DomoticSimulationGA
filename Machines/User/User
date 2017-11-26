@@ -1,0 +1,8 @@
+NAME=User
+STATES=outState,floorOneState
+STATE_INITIAL=outState
+
+STATE_VALUE.outState=0w
+STATE_VALUE.floorOneState=0w
+STATE_CONNECTION.outState=floorOneState
+STATE_CONNECTION.floorOneState=outState

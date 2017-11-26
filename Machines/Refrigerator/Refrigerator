@@ -1,4 +1,11 @@
 NAME=Refrigerator
 STATES=onlineState,openState,closeState,offlineState
 STATE_INITIAL=offlineState
-STATE.onlineState=0w
+STATE_VALUE.onlineState=265w
+STATE_VALUE.openState=300w
+STATE_VALUE.closeState=265w
+STATE_VALUE.offlineState=0w
+STATE_CONNECTION.onlineState=offlineState,openState
+STATE_CONNECTION.openState=closeState
+STATE_CONNECTION.closeState=openState,offlineState
+STATE_CONNECTION.offlineState=onlineState

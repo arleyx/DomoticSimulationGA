@@ -1,3 +1,11 @@
 NAME=Tv
 STATES=onlineState,onState,offState,offlineState
 STATE_INITIAL=offlineState
+STATE_VALUE.onlineState=60w
+STATE_VALUE.onState=200w
+STATE_VALUE.offState=60w
+STATE_VALUE.offlineState=0w
+STATE_CONNECTION.onlineState=offlineState,onState
+STATE_CONNECTION.onState=offState
+STATE_CONNECTION.offState=onState,offlineState
+STATE_CONNECTION.offlineState=onlineState

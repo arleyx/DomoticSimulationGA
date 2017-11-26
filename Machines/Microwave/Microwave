@@ -1,4 +1,13 @@
 NAME=Microwave
 STATES=onlineState,openState,processingState,closeState,offlineState
 STATE_INITIAL=offlineState
-STATE.onlineState=0w
+STATE_VALUE.onlineState=60w
+STATE_VALUE.openState=120w
+STATE_VALUE.processingState=1300w
+STATE_VALUE.closeState=60w
+STATE_VALUE.offlineState=0w
+STATE_CONNECTION.onlineState=offlineState,openState
+STATE_CONNECTION.openState=closeState
+STATE_CONNECTION.processingState=openState
+STATE_CONNECTION.closeState=openState,processingState,offlineState
+STATE_CONNECTION.offlineState=onlineState

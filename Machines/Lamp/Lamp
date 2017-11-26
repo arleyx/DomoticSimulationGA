@@ -1,5 +1,7 @@
 NAME=Lamp
 STATES=onState,offState
 STATE_INITIAL=offState
-STATE.onState=60w
-STATE.offState=0w
+STATE_VALUE.onState=60w
+STATE_VALUE.offState=0w
+STATE_CONNECTION.onState=offState
+STATE_CONNECTION.offState=onState
