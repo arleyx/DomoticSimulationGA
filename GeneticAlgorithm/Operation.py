@@ -28,12 +28,12 @@ class Operation():
 			if parent_1.genes[1][change] > 0:
 				change = random.randint(0, len(parent_1.genes[0]) - 1)
 			else:
-				
+
 				parent_1.genes[0][change] = states[random.randint(0, len(states) - 1)]
 				parent_1 = self.rebuild(parent_1, change)
 
 				break
-		
+
 		change = random.randint(0, len(parent_2.genes[0]) - 1)
 		for i in range(10):
 			if parent_2.genes[1][change] > 0:
@@ -57,7 +57,7 @@ class Operation():
 		return self.next_rebuild(rebuild_parent, change + 1)
 
 	def prev_rebuild(self, parent, change):
-		if change < 0: 
+		if change < 0:
 			return parent
 
 		connection = self.get_prev_connection(parent.genes[0][change + 1])
@@ -66,7 +66,7 @@ class Operation():
 
 		if change > 0 and parent.genes[0][change] == parent.genes[0][change - 1]:
 			return parent
-		
+
 		connection.append(parent.genes[0][change + 1])
 
 		parent.genes[0][change] = connection[random.randint(0, len(connection) - 1)]
@@ -104,17 +104,21 @@ class Operation():
 
 		part = random.randint(1, len(parent_1.genes[0]) - 1)
 
-		childrens.append(
-			Individual([
-				parent_1.genes[0][0:part] + parent_2.genes[0][part:len(parent_2.genes[0])],
-				parent_1.genes[1]
-			], parent_1.costs)
-		)
-		childrens.append(
-			Individual([
-				parent_2.genes[0][0:part] + parent_1.genes[0][part:len(parent_1.genes[0])],
-				parent_2.genes[1]
-			], parent_2.costs)
-		)
+		children1 =  Individual([
+			parent_1.genes[0][0:part] + parent_2.genes[0][part:len(parent_2.genes[0])],
+			parent_1.genes[1]
+		], parent_1.costs)
+
+		children1 = self.rebuild(children1, part)
+
+		children2 = Individual([
+			parent_2.genes[0][0:part] + parent_1.genes[0][part:len(parent_1.genes[0])],
+			parent_2.genes[1]
+		], parent_2.costs)
+
+		children2 = self.rebuild(children2, part)
+
+		childrens.append(children1)
+		childrens.append(children2)
 
 		return childrens

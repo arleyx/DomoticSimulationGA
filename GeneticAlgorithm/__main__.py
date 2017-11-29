@@ -19,10 +19,10 @@ def main():
 
 	individuals_number = 500
 	generations_number = 200
-	
+
 	individuals = []
 	for c in components:
-		
+
 		print('\n')
 		print(c)
 
@@ -90,7 +90,7 @@ def export_data(individuals, actuators):
 				row.append('')
 	data.append(rowPlace)
 	data.append(row)
-	
+
 	for i in range(0, len(individuals[0]['genes'])):
 		row = ['']
 		for individual in individuals:

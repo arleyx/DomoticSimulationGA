@@ -1,2 +1,4 @@
+GeneticAlgorithm/__pycache__/
+GeneticAlgorithm/*.pyc
 .*
 !/.gitignore 
