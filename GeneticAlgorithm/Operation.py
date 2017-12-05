@@ -4,9 +4,10 @@
 import random
 from Individual import Individual
 
-class Operation():
+class Operation:
 
-	def __init__(self, connections):
+	def __init__(self, fitness, connections):
+		self.fitness = fitness
 		self.connections = connections
 
 	def operate(self, parent_1, parent_2):
@@ -47,8 +48,32 @@ class Operation():
 				# parent_2.genes[0][change] = connection[random.randint(0, len(connection) - 1)]
 				break
 
-		childrens.append(Individual(parent_1.genes, parent_1.costs))
-		childrens.append(Individual(parent_2.genes, parent_2.costs))
+		childrens.append(Individual(parent_1.genes, self.fitness.get_fitness(parent_1.genes)))
+		childrens.append(Individual(parent_2.genes, self.fitness.get_fitness(parent_2.genes)))
+
+		return childrens
+
+	def crossover(self, parent_1, parent_2):
+		childrens = []
+
+		part = random.randint(1, len(parent_1.genes[0]) - 1)
+
+		genes1 = [
+			parent_1.genes[0][0:part] + parent_2.genes[0][part:len(parent_2.genes[0])],
+			parent_1.genes[1]
+		]
+		children1 =  Individual(genes1, self.fitness.get_fitness(genes1))
+		children1 = self.rebuild(children1, part)
+
+		genes2 = [
+			parent_2.genes[0][0:part] + parent_1.genes[0][part:len(parent_1.genes[0])],
+			parent_2.genes[1]
+		]
+		children2 = Individual(genes2, self.fitness.get_fitness(genes2))
+		children2 = self.rebuild(children2, part)
+
+		childrens.append(children1)
+		childrens.append(children2)
 
 		return childrens
 
@@ -98,27 +123,3 @@ class Operation():
 				connections.append(key)
 
 		return connections
-
-	def crossover(self, parent_1, parent_2):
-		childrens = []
-
-		part = random.randint(1, len(parent_1.genes[0]) - 1)
-
-		children1 =  Individual([
-			parent_1.genes[0][0:part] + parent_2.genes[0][part:len(parent_2.genes[0])],
-			parent_1.genes[1]
-		], parent_1.costs)
-
-		children1 = self.rebuild(children1, part)
-
-		children2 = Individual([
-			parent_2.genes[0][0:part] + parent_1.genes[0][part:len(parent_1.genes[0])],
-			parent_2.genes[1]
-		], parent_2.costs)
-
-		children2 = self.rebuild(children2, part)
-
-		childrens.append(children1)
-		childrens.append(children2)
-
-		return childrens

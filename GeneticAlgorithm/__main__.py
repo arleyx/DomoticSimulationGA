@@ -4,7 +4,6 @@
 import sys, random, json, operator
 from Reader import Reader
 from Population import Population
-from Individual import Individual
 
 def main():
 	print("Initialite...")
@@ -17,8 +16,8 @@ def main():
 
 	# reader.print_file()
 
-	individuals_number = 500
-	generations_number = 200
+	number_individuals = 250
+	number_generations = 100
 
 	individuals = []
 	for c in components:
@@ -26,12 +25,15 @@ def main():
 		print('\n')
 		print(c)
 
-		individual = Individual(reader.get_genes_device(components[c]['place'], c, actuators), components[c]['costs'])
-		population = Population(individuals_number, generations_number, individual, components[c]['connections'])
-		individuals.append({'order':index_component(c, reader.content[0]), 'name': c, 'place': components[c]['place'], 'optimized':population.optimized, 'genes':population.best.genes[0], 'prev':individual.fitness, 'last':population.best.fitness})
+		genes = reader.get_genes_device(components[c]['place'], c, actuators)
+		connections = components[c]['connections']
+		costs = components[c]['costs']
+		population = Population(number_individuals, number_generations, genes, connections, costs)
 
-		# print('name:' + c + ', place:' + components[c]['place'])
-		# print(individual.genes)
+		individuals.append({'order':index_component(c, reader.content[0]), 'name': c, 'place': components[c]['place'], 'optimized':population.optimized, 'genes':population.best.genes[0], 'prev':population.individual.fitness, 'last':population.best.fitness})
+
+		print('\nNAME:' + c + ', PLACE:' + components[c]['place'] + ', FITNESS:' + str(population.best.fitness) + '\n')
+		print(population.best.genes)
 
 	individuals = sorted(individuals, key=operator.itemgetter('order'))
 

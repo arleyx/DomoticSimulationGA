@@ -3,67 +3,67 @@
 
 import random
 from Individual import Individual
+from Fitness import Fitness
 from Operation import Operation
 from Replace import Replace
 
 class Population:
-	
-	def __init__(self, n, g, individual, connections):
+
+	def __init__(self, n, g, genes, connections, costs):
 		self.n = n
 		self.g = g
-		self.individual = individual
 		self.connections = connections
 
-		self.population = self.initial_population()
-
-		self.operation = Operation(connections)
+		self.fitness = Fitness(genes, costs)
+		self.operation = Operation(self.fitness, connections)
 		self.replace = Replace()
 
+		self.individual = Individual(genes, self.fitness.get_fitness(genes))
+		self.population = self.initial_population()
 		self.generations()
-		
+
 	def initial_population(self):
 		individuals = []
 		for i in range(self.n):
 			genes = [[], self.individual.genes[1]]
-
-			penalization = 0
 
 			for j in range(0, len(self.individual.genes[0])):
 				#if self.individual.genes[1][j] == 1:
 					#genes[0].append(self.individual.genes[0][j])
 				#else:
 				connection = self.connections[self.individual.genes[0][j]] + [self.individual.genes[0][j]]
-				_random = random.randint(0, len(connection) - 1)
-				genes[0].append(connection[_random])
+				genes[0].append(connection[random.randint(0, len(connection) - 1)])
 
-				if self.individual.genes[1][j] == 1:
-					penalization += self.individual.get_cost(connection[_random]) * 5
-
-			_individual = Individual(genes, self.individual.costs)
-
-			# print('Antes: ' + str(_individual.fitness))
-
-			_individual.fitness += penalization
-
-			# print('Despues: ' + str(_individual.fitness))
-
-			individuals.append(_individual)
+			individuals.append(Individual(genes, self.fitness.get_fitness(genes)))
 		return individuals
 
 	def generations(self):
+		number_generations = []
+
 		if self.g > 1:
 			for i in range(2, self.g + 1):
 				self.population = self.new_generation(self.population)
+				number_generations.append(self.the_best().fitness)
+
+		text_generations = ''
+		for i in number_generations:
+			text_generations += str(i) + ','
+
+		print('\nGeneraciones')
+		print(text_generations)
 
 		self.best = self.the_best()
 		self.optimized = True
 
-		
-		print('BEST')
-		print('Fitness: ' + str(self.best.fitness))
-		print('')
-		print(self.best.genes)
-		
+		self.fitness.get_fitness(self.best.genes)
+		print('\n')
+		print(self.fitness.info)
+
+		# print('BEST')
+		# print('Fitness: ' + str(self.best.fitness))
+		# print('')
+		# print(self.best.genes)
+
 
 		# SI NO ES MEJOR, DEJA EL INICIAL
 		if self.best.fitness >= self.individual.fitness:
@@ -89,9 +89,11 @@ class Population:
 			selection = []
 			parents = []
 
-			for i in range(4):
+			for i in range(3): ### CAMBIE SOLO POR PROBAR PASANDO EL MEJOR Y OTROS 3, ESTABA EN 4.
 				selector = random.randint(0, len(population) - 1)
 				selection.append(population[selector])
+
+			selection.append(self.the_best())
 
 			for i in range(2):
 				parents.append(self.compete(selection[0], selection[1]))
