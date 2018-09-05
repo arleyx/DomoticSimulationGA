@@ -39,6 +39,8 @@ class Replace:
     def compete(self, individual_1, individual_2):
         fitness_total = individual_1.fitness + individual_2.fitness
 
+        if (fitness_total == 0): return individual_1
+
         percentage_1 = (individual_1.fitness / fitness_total)
 
         return (individual_2 if random.random() > percentage_1 else individual_1)

@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys, random, json, operator
+import sys, random, json, operator, time, os, csv
 from Reader import Reader
 from Population import Population
 
 def main():
 	print("Initialite...")
+
+	init_time = time.time()
 
 	reader = Reader(sys.argv[1])
 	data = json.loads(sys.argv[2])
@@ -14,11 +16,22 @@ def main():
 	actuators = data['actuators']
 	components = data['components']
 
+	#
+
+	pathComponents = sys.argv[1].replace('GA.csv', 'components/')
+	if not os.path.exists(pathComponents):
+		os.makedirs(pathComponents)
+
 	# reader.print_file()
 
 	number_individuals = 250
 	number_generations = 100
 
+	actuators_genes = []
+	for actuator in actuators:
+		actuators_genes.append({'name':actuator, 'genes':reader.get_genes_user(actuator)})
+
+	components_name = []
 	individuals = []
 	for c in components:
 
@@ -32,19 +45,84 @@ def main():
 
 		individuals.append({'order':index_component(c, reader.content[0]), 'name': c, 'place': components[c]['place'], 'optimized':population.optimized, 'genes':population.best.genes[0], 'prev':population.individual.fitness, 'last':population.best.fitness})
 
+		components_name.append(c)
+
+		export_component(pathComponents, c, {
+			'name': c,
+			'place': components[c]['place'],
+			'before': {
+				'fitness': population.individual.fitness,
+				'genes': genes[0]
+			},
+			'after': {
+				'fitness': population.best.fitness,
+				'genes': population.best.genes[0]
+			},
+			'users': actuators_genes
+		})
+
 		print('\nNAME:' + c + ', PLACE:' + components[c]['place'] + ', FITNESS:' + str(population.best.fitness) + '\n')
 		print(population.best.genes)
 
+
+	#######
+	# Descomentar cuando se terminen de cargar las 30 veces de los resultados
+	#
+	export_component(pathComponents, 'index', { 'components': components_name })
+	#
+	# Y comentar
+	export_all_data(individuals, actuators_genes, time.time() - init_time)
+	#######
+
 	individuals = sorted(individuals, key=operator.itemgetter('order'))
 
-	actuators_genes = []
-	for actuator in actuators:
-		actuators_genes.append({'name':actuator, 'genes':reader.get_genes_user(actuator)})
+	reader.write(export_data(individuals, actuators_genes, time.time() - init_time))
 
-	reader.write(export_data(individuals, actuators_genes))
+def export_component(path, name, data):
+	outfile = open(path + name + '.json', 'w')
+	json.dump(data, outfile)
 
-def export_data(individuals, actuators):
+def export_all_data(individuals, actuators, time):
+	data = []
+	row = []
+
+	sum = 0
+	for individual in individuals:
+		sum += individual['prev']
+	row.append(sum)
+
+	sum = 0
+	for individual in individuals:
+		sum += individual['last']
+	row.append(sum)
+
+	sum = 0
+	for individual in individuals:
+		if individual['optimized']:
+			sum += 1
+
+	row.append(len(individuals))
+	row.append(sum)
+	row.append(time)
+
+	data.append(row)
+
+	content = []
+	file = open('/home/arley/results.csv')
+	reader = csv.reader(file)
+	for line in reader:
+		content.append(line)
+
+	writer = csv.writer(open('/home/arley/results.csv','w'))
+	writer.writerows(content)
+	writer.writerows(data)
+
+def export_data(individuals, actuators, time):
 	data = [[]]
+
+	data.append(['Tiempo de ejecución (s)', time])
+
+	data.append([])
 
 	# RESULTADOS FITNESS
 

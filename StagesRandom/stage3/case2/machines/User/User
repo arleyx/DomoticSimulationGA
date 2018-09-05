@@ -1,3 +1,0 @@
-NAME=User
-STATES=Afuera,Piso1-bano1,Piso1-bano2,Piso1-cafeteria,Piso1-espera,Piso1-recepcion,Piso1-trabajo1,Piso2-bano3,Piso2-bano4,Piso2-reunion,Piso2-trabajo2
-STATE_INITIAL=Afuera

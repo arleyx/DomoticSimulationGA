@@ -1,8 +1,0 @@
-Afuera=User:usuario1:[bombillo1_on][bombillo1_off][bombillo2_on][bombillo2_off][bombillo3_on][bombillo3_off][bombillo4_on][bombillo4_off][bombillo5_on][bombillo5_off][bombillo6_on][bombillo6_off][nevera1_online][nevera1_open][nevera1_close][nevera1_offline][licuadora1_on][licuadora1_off][licuadora1_offline][licuadora1_online][tv1_on][tv1_off][tv1_offline][tv1_online][tv2_on][tv2_off][tv2_offline][tv2_online][cargador1_offline][cargador1_online][equipo1_on][equipo1_off][equipo1_offline][equipo1_online][equipo2_on][equipo2_off][equipo2_offline][equipo2_online][plancha1_on][plancha1_off][plancha1_offline][plancha1_online]
-Piso1-Cocina=Lamp:bombillo1,Refrigerator:nevera1,Blender:licuadora1
-Piso1-Sala=Lamp:bombillo2
-Piso1-Comedor=
-Piso1-Bano=Lamp:bombillo3
-Piso1-Estudio=Lamp:bombillo4
-Piso1-Habitacion1=Lamp:bombillo5,Tv:tv1,Charger:cargador1,Stereo:equipo1,Iron:plancha1
-Piso1-Habitacion2=Lamp:bombillo6,Tv:tv2,Stereo:equipo2
