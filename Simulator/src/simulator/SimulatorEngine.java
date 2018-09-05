@@ -1,6 +1,6 @@
 package simulator;
 
-import java.util.Map;
+// import java.util.Map;
 
 import it.polito.elite.domotics.models.simulator.SCXMLHomeSimulatorEngine;
 import it.polito.elite.domotics.models.simulator.StateChangeListener;

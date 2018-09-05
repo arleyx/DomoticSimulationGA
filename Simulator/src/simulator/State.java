@@ -24,4 +24,17 @@ public class State extends LinkedHashMap<String, String> {
 			//states += ","+ entry.getKey() + "=" + entry.getValue();
 		return states;
 	}
+	
+	public String getEvent(String component) {
+		return get(component).replaceAll("State", "");
+	}
+	
+	public String toJSON() {
+		String response = "{";
+		
+		for (Entry<String, String> entry : this.entrySet())
+			response += "\"" + entry.getKey() + "\":\"" + entry.getValue() + "\",";
+		
+		return response.substring(0, response.length() - 1) + "}";
+	}
 }

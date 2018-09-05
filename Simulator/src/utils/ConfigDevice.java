@@ -1,15 +1,19 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-
 public class ConfigDevice extends Config {
 
 	private static final long serialVersionUID = 1L;
 
 	public ConfigDevice(String path) {
 		super(path);
+	}
+	
+	public String[] getValidStates(String state) {
+		return getProperty("STATE_CONNECTION." + state).split("\\,");
+	}
+	
+	public int getCostState(String state) {
+		return Integer.parseInt(getProperty("STATE_VALUE." + state).replaceAll("w", ""));
 	}
 	
 	/*public String[] getPlaces() {

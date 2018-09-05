@@ -1,3 +1,13 @@
 NAME=User
 STATES=Afuera,Piso1-bano1,Piso1-bano2,Piso1-cocina,Piso1-comedor,Piso1-habitacion1,Piso1-habitacion2,Piso1-habitacion3,Piso1-patio,Piso1-sala
 STATE_INITIAL=Afuera
+STATE_CONNECTION.Afuera=Piso1-sala
+STATE_CONNECTION.Piso1-cocina=Piso1-sala
+STATE_CONNECTION.Piso1-sala=Afuera,Piso1-cocina,Piso1-comedor,Piso1-bano1,Piso1-bano2,Piso1-habitacion1,Piso1-habitacion2,Piso1-habitacion3,Piso1-patio
+STATE_CONNECTION.Piso1-comedor=Piso1-sala
+STATE_CONNECTION.Piso1-bano1=Piso1-sala
+STATE_CONNECTION.Piso1-bano2=Piso1-sala
+STATE_CONNECTION.Piso1-habitacion1=Piso1-sala
+STATE_CONNECTION.Piso1-habitacion2=Piso1-sala
+STATE_CONNECTION.Piso1-habitacion3=Piso1-sala
+STATE_CONNECTION.Piso1-patio=Piso1-sala

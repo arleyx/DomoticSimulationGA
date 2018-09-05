@@ -38,6 +38,10 @@ public class Result {
 		return path;
 	}
 	
+	public String getPathName() {
+		return path + name;
+	}
+	
 	public String getName() {
 		return name;
 	}
