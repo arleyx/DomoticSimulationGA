@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from os import listdir, symlink, remove
+from os import listdir, symlink, remove, getcwd
 from os.path import isdir, isfile, join
 from shutil import rmtree
 
 def main():
-    path_machines = 'Machines/'
-    path_stages = 'Stages/'
+    path_machines = getcwd() + '/Machines/'
+    path_stages = getcwd() + '/Stages/'
 
     entry_recursive(0, path_stages, path_machines)
 
