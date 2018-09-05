@@ -1,0 +1,43 @@
+<div class="wrap">
+  <div class="header">
+    <button (click)="connect()" [disabled]="isConnect"><i class="fa fa-upload" aria-hidden="true"></i> Conectar</button>
+    <button (click)="unconnect()" [disabled]="!isConnect"><i class="fa fa-download" aria-hidden="true"></i> Desconectar</button>
+    <button (click)="start()" [disabled]="!isConnect || isStart"><i class="fa fa-play" aria-hidden="true"></i> Iniciar</button>
+    <button (click)="stop()" [disabled]="!isConnect || !isStart"><i class="fa fa-stop" aria-hidden="true"></i> Detener</button>
+    
+    <!--<button (click)="showInfo()" [disabled]="!isAlgorithm"><i class="fa fa-info" aria-hidden="true"></i> Ver información</button>
+    <button (click)="showInfo()"><i class="fa fa-info" aria-hidden="true"></i> asd</button>-->
+  </div>
+
+  <div class="body">
+    <div *ngFor="let place of stage.places" [ngClass]="['place', hasActuatorInPlace(place.name) ? '' : 'inactive']">
+      <h3>{{ place.name }}</h3>
+      <div class="wrap-components">
+        <div *ngFor="let component of place.components" class="component">
+          <h4>{{ component.name }}:</h4>
+          <button *ngFor="let state of component.states" [ngClass]="getClassStyle(component.name,state)" [disabled]="getClassStyle(component.name,state) == 'disabledState'" (click)="change(component.name, state)">{{ state }}</button>
+        </div>
+      </div>
+      <div class="wrap-actuators">
+        <div *ngFor="let actuator of stage.actuators">
+          <div *ngIf="states[actuator.name] == place.name" class="actuator">
+            <h4><i class="fa fa-male" aria-hidden="true"></i> {{ actuator.name }}</h4>
+            <button *ngFor="let state of actuator.states" [ngClass]="getClassStyle(actuator.name,state)" [disabled]="getClassStyle(actuator.name,state) == 'disabledState'" (click)="change(actuator.name, state)">{{ state }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <table>
+      <tr><th>Estado: </th><td>{{ isConnect ? 'Conectado' : 'Desconectado' }}</td></tr>
+      <tr><th>Tiempo: </th><td>{{ milliseconds }}ms</td></tr>
+    </table>
+  </div>
+
+  <div #info class="info disable">
+    <button class="close" (click)="closeInfo()"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
+    <div></div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+.wrap {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.wrap .header {
+    background-color: #418ed2;
+    padding: 10px;
+}
+
+.wrap .body {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.wrap .footer {
+    padding: 10px;
+}
+
+.wrap .info {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 5px #878787;
+    height: 98%;
+    left: 1%;
+    position: absolute;
+    top: 1%;
+    width: 98%;
+    z-index: 10;
+}
+
+.wrap .info .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.wrap .info.disable {
+    display: none;
+}
+
+.place {
+    margin: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px #dccdcd;
+    display: flex;
+    flex-flow: column;
+    min-width: 300px;
+    position: relative;
+}
+
+.place.inactive::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10,10,10,0.3);
+    content: '';
+    z-index: 1;
+}
+
+.place h3 {
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+.place .wrap-components {
+    flex: 1 0 auto;
+    padding-top: 5px;
+}
+
+.place .wrap-actuators {
+    padding-bottom: 5px;
+}
+
+.place .wrap-components .component {
+    padding: 5px 10px;
+}
+
+.place .wrap-actuators .actuator {
+    padding: 5px 10px;
+}
+
+.onState {
+    background-color: #9de062;
+    color: #3d631c;
+}
+
+.offState {
+    background-color: #ff9797;
+    color: #d43030;
+}
+
+.disabledState {
+    background-color: #cecece;
+    color: #5c5c5c;
+}
