@@ -1,4 +1,35 @@
 GeneticAlgorithm/__pycache__/
 GeneticAlgorithm/*.pyc
 .*
-!/.gitignore 
+.gitignore
+
+
+
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# misc
+/Client/.sass-cache
+/Client/connect.lock
+/Client/coverage
+/Client/libpeerconnection.log
+Client/npm-debug.log
+Client/testem.log
+/Client/typings
+
+# e2e
+/Client/e2e/*.js
+/Client/e2e/*.map
+
+# System Files
+Client/.DS_Store
+Client/Thumbs.db
+
